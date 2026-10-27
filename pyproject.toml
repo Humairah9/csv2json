@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "csv2json"
+dynamic = ["version"]
+description = "Convert CSV files to JSON from the command line, without silently damaging your data."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["csv", "json", "cli", "converter"]
+classifiers = [
+    "Environment :: Console",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+dependencies = []
+
+[project.scripts]
+csv2json = "csv2json.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "csv2json.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

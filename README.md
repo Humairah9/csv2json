@@ -20,7 +20,7 @@ The files below are in [`examples/`](examples/).
 
 ```console
 $ csv2json examples/people.csv
-\[
+[
   {
     "name": "Ada Obi",
     "zip": "02134",
@@ -38,7 +38,7 @@ Note that `02134` keeps its leading zero. Values stay text unless you ask otherw
 
 ```console
 $ csv2json examples/scores.csv --infer-types --indent 0
-\[{"player":"Ada","score":42,"active":true,"notes":null},{"player":"Bola","score":17.5,"active":false,"notes":"late"}]
+[{"player":"Ada","score":42,"active":true,"notes":null},{"player":"Bola","score":17.5,"active":false,"notes":"late"}]
 ```
 
 Other separators, files and pipes:
@@ -47,7 +47,7 @@ Other separators, files and pipes:
 csv2json examples/export.tsv -d tab          # tab-separated input (also: semicolon, pipe, or any one character)
 csv2json people.csv -o people.json           # write to a file instead of the terminal
 cat people.csv | csv2json - --indent 0       # read standard input, compact output
-csv2json old\_export.csv --encoding latin-1   # files saved by older Excel versions
+csv2json old_export.csv --encoding latin-1   # files saved by older Excel versions
 csv2json raw.csv --no-header                 # first row is data: output is a list of lists
 ```
 
@@ -69,14 +69,14 @@ csv2json raw.csv --no-header                 # first row is data: output is a li
 
 |Input|Behaviour|
 |-|-|
-|`02134`, `007`, `1\_000`, `NaN`, `42`|Kept as text, even with `--infer-types`|
+|`02134`, `007`, `1_000`, `NaN`, `42`|Kept as text, even with `--infer-types`|
 |Duplicate column names|Error naming both columns (JSON keys would overwrite each other)|
 |Row with too few or too many fields|Error with the line number; `--lenient` fixes and warns|
 |Empty file|Error: "input is empty (no header row found)"|
-|Header only|Outputs `\[]`|
+|Header only|Outputs `[]`|
 |Blank lines|Skipped|
 |Quoted fields containing commas, quotes or newlines|Preserved|
-|Excel byte-order mark|Removed, so the first column is not named `\\ufeffid`|
+|Excel byte-order mark|Removed, so the first column is not named `\ufeffid`|
 |Not UTF-8|Error suggesting `--encoding latin-1`|
 |Missing file, a directory, unwritable output|One-line error, no traceback|
 |`-o` pointing at the input file|Refused, so the input is never overwritten|
@@ -102,7 +102,7 @@ python3 -m unittest discover -s tests -v
 
 ## Design
 
-See [DESIGN\_NOTE.md](DESIGN_NOTE.md) for one decision I changed after testing on awkward input.
+See [DESIGN_NOTE.md](DESIGN_NOTE.md) for one decision I changed after testing on awkward input.
 
 ## Licence
 
